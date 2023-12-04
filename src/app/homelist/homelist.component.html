@@ -1,0 +1,43 @@
+<button (click)="fetchData()">Get All User Details</button>
+
+<table class="table" *ngIf="!isbound">
+    <thead>
+      <tr>
+        <th >id</th>
+        <th >Name</th>
+        <th >UserName</th>
+        <th >Address</th>
+        <th >Email</th>
+      </tr>
+    </thead>
+    <tbody>
+     <tr *ngFor="let user of tableData">
+<td>{{user.id}}</td>
+<td>{{user.name}}</td>
+<td>{{user.username}}</td>
+<td>{{user.address.city}},{{user.address.street}},Pin:{{user.address.zipcode}}</td>
+<td>{{user.email}}</td>
+<td>  <button (click)="deleteUser(user.id)">Delete</button>  </td>
+<td><button routerLink="/edit-user/{{user.id}}" >Edit</button> </td>
+
+
+     </tr>
+    </tbody>
+  </table>
+
+
+
+ <br> <br><input type="text" [(ngModel)]="searchUserId"    placeholder="Enter user ID">
+<button (click)="searchUser()">Get particular details of a user</button>
+
+<!-- Display the user details -->
+<div *ngIf="user">
+  <h2>User Details</h2>
+  <p>ID: {{ user.id }}</p>
+  <p>Name: {{ user.name }}</p>
+  <p>Username: {{ user.username }}</p>
+  <p>Address:{{user.address.city}},{{user.address.street}},Pin:{{user.address.zipcode}}</p>
+  <p>{{user.email}}</p>
+
+  <!-- Add more details as needed -->
+</div>
